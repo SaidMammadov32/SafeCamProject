@@ -1,0 +1,20 @@
+﻿@model ProfessionUpdateVM
+
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                    <input asp-for="Name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <button asp-action="Update" type="submit" class="btn btn-primary">Update</button>
+                <a class="btn btn-warning" asp-controller="Profession" asp-action="Index">Back</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+

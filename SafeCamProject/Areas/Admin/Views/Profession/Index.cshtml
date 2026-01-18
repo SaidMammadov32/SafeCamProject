@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProfessionVM>
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-md-flex align-items-center">
+                            <div>
+                                <h4 class="card-title">Products Performance</h4>
+                                <p class="card-subtitle">
+                                    Ample Admin Vs Pixel Admin
+                                </p>
+                            </div>
+                            <div class="ms-auto mt-3 mt-md-0">
+                                <a class="btn btn-success"asp-controller="Profession" asp-action="Create">Create</a>
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-4">
+                            <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="px-0 text-muted">
+                                            Id
+                                        </th>
+                                        <th scope="col" class="px-0 text-muted">Name</th>
+                                        <th scope="col" class="px-0 text-muted">
+                                            CreateDate
+                                        </th>
+                                        <th scope="col" class="px-0 text-muted text-end">
+                                            Operations
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            
+                                            <td class="px-0">@item.Id</td>
+                                            <td class="px-0">@item.Name</td>
+                                            <td class="px-0 ">
+                                                @item.CreateDate
+                                            </td>
+                                            <td class="px-0 text-dark fw-medium text-end ">
+                                                <a asp-controller="Profession" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info">View</a>
+                                                <a asp-controller="Profession" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+                                                <form method="post" style="display:inline;">
+                                                    <button type="submit" asp-action ="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

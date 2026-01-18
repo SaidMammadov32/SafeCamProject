@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TeamVM>
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-md-flex align-items-center">
+                            <div>
+                                <h4 class="card-title">Products Performance</h4>
+                                <p class="card-subtitle">
+                                    Ample Admin Vs Pixel Admin
+                                </p>
+                            </div>
+                            <div class="ms-auto mt-3 mt-md-0">
+                                <a asp-controller="Team" asp-action="Create">Create</a>
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-4">
+                            <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="px-0 text-muted">
+                                            Id
+                                        </th>
+                                        <th scope="col" class="px-0 text-muted">Image</th>
+                                        <th scope="col" class="px-0 text-muted">Name</th>
+                                        <th scope="col" class="px-0 text-muted">
+                                            Profession Name
+                                        </th>
+                                        <th scope="col" class="px-0 text-muted">CreateDate</th>
+                                        <th scope="col" class="px-0 text-muted text-end">
+                                            Operations
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="px-0">@item.Id</td>
+                                            <td class="px-0">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="~/assets/img/@item.Image" class="rounded-circle" width="40"
+                                                    alt="flexy" />
+                                                    <div class="ms-3">
+                                                        <h6 class="mb-0 fw-bolder">@item.Image</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-0">@item.Name</td>
+                                            
+                                            <td class="px-0">
+                                                @item.Profession
+                                            </td>
+
+                                            <td class="px-0">
+                                                @item.CreateDate
+                                            </td>
+
+                                            <td class="px-0 text-dark fw-medium text-end">
+                                                <a asp-controller="Team" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info">View</a>
+                                                <a class="btn btn-warning">Update</a>
+                                                <a class="btn btn-danger">Delete</a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
