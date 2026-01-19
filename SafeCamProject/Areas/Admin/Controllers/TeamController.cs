@@ -63,30 +63,39 @@ namespace SafeCamProject.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Update(int? id)
-        //{
-        //    if (id == null) return BadRequest();
-        //    var data = await _teamService.GetByIdAsync(id.Value);
-        //    if (data == null) return NotFound();
+        [HttpGet]
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null) return BadRequest();
+            var data = await _teamService.GetByIdAsync(id.Value);
+            if (data == null) return NotFound();
 
-        //    return View(new ProfessionUpdateVM
-        //    {
-        //        Id = data.Id,
-        //        Name = data.Name
-        //    });
-        //}
+            ViewBag.Professions = await _professionService.GetAllSelectedAsync();
 
-        //[HttpPost]
-        //public async Task<IActionResult> Update(int? id, TeamCreateVM teamCreateVM)
-        //{
-        //    if (!ModelState.IsValid) return BadRequest();
-        //    if (id == null) return BadRequest();
-        //    var data = await _teamService.GetByIdAsync(id.Value);
-        //    if (data == null) return NotFound();
+            return View(new TeamUpdateVM
+            {
+                Id = data.Id,
+                Name = data.Name,
+                ProfessionId = data.ProfessionId
+            });
+        }
 
-        //    await _teamService.UpdateAsync(data.Id, teamCreateVM);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Update(int? id, TeamUpdateVM teamUpdateVM)
+        {
+            if (id == null) return BadRequest();
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Professions = await _professionService.GetAllSelectedAsync();
+                return View(teamUpdateVM);
+            }
+
+            var data = await _teamService.GetByIdAsync(id.Value);
+            if (data == null) return NotFound();
+
+            await _teamService.UpdateAsync(data.Id, teamUpdateVM);
+            return RedirectToAction("Index");
+        }
     }
 }

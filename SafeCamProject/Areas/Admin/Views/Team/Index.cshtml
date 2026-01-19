@@ -14,7 +14,7 @@
                                 </p>
                             </div>
                             <div class="ms-auto mt-3 mt-md-0">
-                                <a asp-controller="Team" asp-action="Create">Create</a>
+                                <a class="btn btn-success" asp-controller="Team" asp-action="Create">Create</a>
                             </div>
                         </div>
                         <div class="table-responsive mt-4">
@@ -61,8 +61,10 @@
 
                                             <td class="px-0 text-dark fw-medium text-end">
                                                 <a asp-controller="Team" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info">View</a>
-                                                <a class="btn btn-warning">Update</a>
-                                                <a class="btn btn-danger">Delete</a>
+                                                <a asp-controller="Team" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+                                                <form method="post" style="display:inline">
+                                                    <button asp-controller ="Team" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</button>
+                                                </form>
                                             </td>
 
                                         </tr>
